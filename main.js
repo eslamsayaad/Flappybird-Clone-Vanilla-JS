@@ -99,12 +99,42 @@ canvas.addEventListener("click", (e) => {
 });
 
 document.addEventListener("keydown", () => {
-  bird.flap();
+  if (state.current === state.game) {
+    bird.flap();
+  }
 });
+
+function darkMode() {
+  circle.classList.add("active");
+  btn.style.backgroundColor = "#fb9f49";
+  localStorage.setItem("dark", "true");
+}
+
+function offDarkMode() {
+  circle.classList.remove("active");
+  btn.style.backgroundColor = "#57d857";
+  localStorage.setItem("dark", "false");
+}
 
 btnContainer.addEventListener("click", () => {
   circle.classList.toggle("active");
+
+  if (circle.classList.contains("active")) {
+    darkMode();
+    background.sX = localStorage.setItem("sX", 146);
+    background.sX = 146;
+  } else {
+    offDarkMode();
+    background.sX = localStorage.setItem("sX", 0);
+    background.sX = 0;
+  }
 });
+
+if (localStorage.getItem("dark") === "true") {
+  darkMode();
+} else {
+  offDarkMode();
+}
 
 // Objects
 // States
@@ -117,7 +147,7 @@ const state = {
 
 // Background
 const background = {
-  sX: 0,
+  sX: localStorage.getItem("sX") || 0,
   sY: 0,
   sWidth: 144,
   sHeight: 256,
@@ -141,15 +171,7 @@ const background = {
     );
   },
 
-  update() {
-    if (circle.classList.contains("active")) {
-      this.sX = 146;
-      btn.style.background = "#fb9f49";
-    } else {
-      this.sX = 0;
-      btn.style.background = "#57d857";
-    }
-  },
+  update() {},
 };
 
 // Pipes
@@ -175,7 +197,7 @@ const pipes = {
   maxPos: -230,
   minPos: -100,
 
-  gap: 90,
+  gap: 95,
 
   frames: 0,
   period: 170,
@@ -192,9 +214,7 @@ const pipes = {
         bird.y + bird.height > position.y
       ) {
         state.current = state.gameOver;
-      }
-
-      if (
+      } else if (
         bird.x + bird.width > position.x &&
         bird.x < position.x + this.width &&
         bird.y < bottomPosY + this.height &&
@@ -262,8 +282,6 @@ const pipes = {
 
       this.frames++;
     }
-
-    console.log(frames);
   },
 
   reset() {
@@ -343,9 +361,11 @@ const bird = {
   frame: 0,
 
   speed: 0,
-  gravity: 0.135,
+  gravity: 0.24,
 
-  jump: 2.6,
+  jump: 3.7,
+
+  isHit: false,
 
   draw() {
     ctx.drawImage(
@@ -395,6 +415,14 @@ const bird = {
 
       this.frames++;
     }
+
+    if (state.current === state.gameOver) {
+      this.isHit = true;
+    } else {
+      this.isHit = false;
+    }
+
+    // console.log(this.isHit);
   },
   flap() {
     if (pauseBtn.isPause === false) {
@@ -515,7 +543,7 @@ const gameOver = {
       sWidth: 40,
       sHeight: 14,
       x: canvas.width / 2 - 40,
-      y: canvas.height / 2 + 5,
+      y: canvas.height / 2 - 20,
       width: multipleTwo(40),
       height: multipleTwo(14),
     },
@@ -658,10 +686,10 @@ function update() {
   background.update();
   pipes.update();
   floor.update();
-  bird.update();
   gameOver.update();
   pauseBtn.update();
   score.update();
+  bird.update();
 }
 
 function animate() {
@@ -670,5 +698,9 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
+
+// if (bird.isHit === true) {
+//   HIT.play();
+// }
 
 animate();

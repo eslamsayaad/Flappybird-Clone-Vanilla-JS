@@ -8,6 +8,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background-color: #121212;
 }
@@ -50,6 +51,7 @@ footer .btn_container > button {
   width: 35px;
   height: 14px;
   border: 3px solid #f0f0f0;
+  /* background-color: #57d857; */
   border-radius: 10px;
   margin: 0.5em 0;
 }
@@ -68,6 +70,6 @@ footer .btn_container > button > .circle {
 }
 
 footer .btn_container > button .active {
-  left: 0;
   transition: all 200ms ease-in;
+  left: 0;
 }
