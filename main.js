@@ -29,6 +29,8 @@ let multipleTwo = function (num) {
   return num * 2;
 };
 
+// Event Listener
+
 canvas.addEventListener("click", (e) => {
   if (state.current === state.game) {
     let cltRect = canvas.getBoundingClientRect();
@@ -59,7 +61,6 @@ canvas.addEventListener("click", (e) => {
   }
 });
 
-// Event Listener
 canvas.addEventListener("click", (e) => {
   let cltRect = canvas.getBoundingClientRect();
   let cltX = e.clientX - cltRect.left;
@@ -206,31 +207,34 @@ const pipes = {
     for (let i = 0; i < this.position.length; i++) {
       let position = this.position[i];
       let bottomPosY = this.height + position.y + this.gap;
+      if (state.current === state.game) {
+        if (
+          bird.x + bird.width - 1 > position.x &&
+          bird.x + 1 < position.x + this.width &&
+          bird.y < position.y + this.height &&
+          bird.y + bird.height > position.y
+        ) {
+          HIT.play();
+          state.current = state.gameOver;
+        } else if (
+          bird.x + bird.width - 1 > position.x &&
+          bird.x + 1 < position.x + this.width &&
+          bird.y < bottomPosY + this.height &&
+          bird.y + bird.height > bottomPosY
+        ) {
+          HIT.play();
+          state.current = state.gameOver;
+        }
 
-      if (
-        bird.x + bird.width > position.x &&
-        bird.x < position.x + this.width &&
-        bird.y < position.y + this.height &&
-        bird.y + bird.height > position.y
-      ) {
-        state.current = state.gameOver;
-      } else if (
-        bird.x + bird.width > position.x &&
-        bird.x < position.x + this.width &&
-        bird.y < bottomPosY + this.height &&
-        bird.y + bird.height > bottomPosY
-      ) {
-        state.current = state.gameOver;
-      }
-
-      if (
-        bird.x + bird.width === position.x + this.width / 2 &&
-        bird.y >= position.y + this.height &&
-        bird.y + bird.height <= bottomPosY
-      ) {
-        score.current++;
-        localStorage.setItem("high", score.high);
-        POINT.play();
+        if (
+          bird.x + bird.width === position.x + this.width / 2 &&
+          bird.y >= position.y + this.height &&
+          bird.y + bird.height <= bottomPosY
+        ) {
+          score.current++;
+          localStorage.setItem("high", score.high);
+          POINT.play();
+        }
       }
 
       ctx.drawImage(
@@ -361,11 +365,9 @@ const bird = {
   frame: 0,
 
   speed: 0,
-  gravity: 0.24,
+  gravity: 0.2,
 
-  jump: 3.7,
-
-  isHit: false,
+  jump: 2.6,
 
   draw() {
     ctx.drawImage(
@@ -403,7 +405,6 @@ const bird = {
           this.gravity = 0.75;
         } else {
           this.gravity = 0.1;
-          gameOver.isOver = false;
         }
       }
 
@@ -415,14 +416,6 @@ const bird = {
 
       this.frames++;
     }
-
-    if (state.current === state.gameOver) {
-      this.isHit = true;
-    } else {
-      this.isHit = false;
-    }
-
-    // console.log(this.isHit);
   },
   flap() {
     if (pauseBtn.isPause === false) {
@@ -543,7 +536,7 @@ const gameOver = {
       sWidth: 40,
       sHeight: 14,
       x: canvas.width / 2 - 40,
-      y: canvas.height / 2 - 20,
+      y: canvas.height / 2 - 21,
       width: multipleTwo(40),
       height: multipleTwo(14),
     },
@@ -698,9 +691,5 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
-
-// if (bird.isHit === true) {
-//   HIT.play();
-// }
 
 animate();
