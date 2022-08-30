@@ -25,8 +25,8 @@ let randomNum = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-let multipleTwo = function (num) {
-  return num * 2;
+let multipleTwoNum = function (num) {
+  return num * 2.5;
 };
 
 // Event Listener
@@ -192,8 +192,8 @@ const pipes = {
 
   position: [],
 
-  width: multipleTwo(26),
-  height: multipleTwo(160),
+  width: multipleTwoNum(26),
+  height: multipleTwoNum(160),
 
   maxPos: -230,
   minPos: -100,
@@ -301,9 +301,9 @@ const floor = {
   sHeight: 56,
 
   x: 0,
-  y: canvas.height - multipleTwo(56),
+  y: canvas.height - multipleTwoNum(56),
   width: canvas.width,
-  height: multipleTwo(56),
+  height: multipleTwoNum(56),
 
   draw() {
     ctx.drawImage(
@@ -358,14 +358,14 @@ const bird = {
 
   x: 60,
   y: canvas.height / 3.25,
-  width: multipleTwo(17),
-  height: multipleTwo(13),
+  width: multipleTwoNum(17),
+  height: multipleTwoNum(13),
 
   frames: 0,
   frame: 0,
 
   speed: 0,
-  gravity: 0.2,
+  gravity: 0.23,
 
   jump: 2.6,
 
@@ -400,11 +400,13 @@ const bird = {
         if (this.y + this.height >= floor.y) {
           this.y = floor.y - this.height;
           state.current = state.gameOver;
-        } else if (this.y <= 0) {
-          this.y *= -0.5;
-          this.gravity = 0.75;
         } else {
           this.gravity = 0.1;
+        }
+
+        if (this.y <= 0) {
+          this.y *= -0.5;
+          this.gravity = 0.75;
         }
       }
 
@@ -417,6 +419,7 @@ const bird = {
       this.frames++;
     }
   },
+
   flap() {
     if (pauseBtn.isPause === false) {
       this.speed = -this.jump;
@@ -439,8 +442,8 @@ const getReady = {
       sWidth: 89,
       sHeight: 24,
 
-      width: multipleTwo(89),
-      height: multipleTwo(24),
+      width: multipleTwoNum(89),
+      height: multipleTwoNum(24),
       x: canvas.width / 2 - (89 + bird.x / 2),
       y: bird.y - 24 / 3,
     },
@@ -451,10 +454,10 @@ const getReady = {
         sWidth: 92,
         sHeight: 25,
 
-        width: multipleTwo(92),
-        height: multipleTwo(25),
+        width: multipleTwoNum(92),
+        height: multipleTwoNum(25),
         x: canvas.width / 2 - 92,
-        y: bird.y - multipleTwo(40),
+        y: bird.y - multipleTwoNum(40),
       },
 
       {
@@ -463,8 +466,8 @@ const getReady = {
         sWidth: 57,
         sHeight: 49,
 
-        width: multipleTwo(57),
-        height: multipleTwo(49),
+        width: multipleTwoNum(57),
+        height: multipleTwoNum(49),
         x: canvas.width / 2 - 57,
         y: bird.y,
       },
@@ -515,30 +518,30 @@ const gameOver = {
       sY: 59,
       sWidth: 96,
       sHeight: 21,
-      x: canvas.width / 2 - 96,
+      x: canvas.width / 5.5 + 5,
       y: canvas.height / 5 - 30,
-      width: multipleTwo(96),
-      height: multipleTwo(21),
+      width: multipleTwoNum(96),
+      height: multipleTwoNum(21),
     },
     {
       sX: 3,
       sY: 259,
       sWidth: 113,
       sHeight: 57,
-      x: canvas.width / 4 - 57 / 2,
-      y: canvas.height / 4,
-      width: multipleTwo(113),
-      height: multipleTwo(57),
+      x: canvas.width / 8,
+      y: canvas.height / 4 + 4,
+      width: multipleTwoNum(113),
+      height: multipleTwoNum(57),
     },
     {
       sX: 462,
       sY: 42,
       sWidth: 40,
       sHeight: 14,
-      x: canvas.width / 2 - 40,
-      y: canvas.height / 2 - 21,
-      width: multipleTwo(40),
-      height: multipleTwo(14),
+      x: canvas.width / 2.7 + 3,
+      y: canvas.height / 2 + 21 / 5,
+      width: multipleTwoNum(40),
+      height: multipleTwoNum(14),
     },
   ],
 
@@ -572,8 +575,8 @@ const pauseBtn = {
 
   x: 15,
   y: 15,
-  width: multipleTwo(13),
-  height: multipleTwo(14),
+  width: multipleTwoNum(13),
+  height: multipleTwoNum(14),
 
   isPause: false,
 
@@ -617,8 +620,8 @@ const score = {
     if (state.current === state.game) {
       ctx.font = "42px Flappy Bird";
       ctx.lineWidth = 2;
-      ctx.fillText(this.current, canvas.width / 2 - 5, 40);
-      ctx.strokeText(this.current, canvas.width / 2 - 5, 40);
+      ctx.fillText(this.current, canvas.width / 2 - 5, 43);
+      ctx.strokeText(this.current, canvas.width / 2 - 5, 43);
     }
     if (state.current === state.gameOver) {
       ctx.font = "25px Flappy Bird";
@@ -626,24 +629,24 @@ const score = {
 
       ctx.fillText(
         this.high,
-        gameOverMsg.x + gameOverMsg.width - 47,
-        gameOverMsg.y + gameOverMsg.height - 23
+        gameOverMsg.x + gameOverMsg.width - 58,
+        gameOverMsg.y + gameOverMsg.height - 34
       );
       ctx.strokeText(
         this.high,
-        gameOverMsg.x + gameOverMsg.width - 47,
-        gameOverMsg.y + gameOverMsg.height - 23
+        gameOverMsg.x + gameOverMsg.width - 58,
+        gameOverMsg.y + gameOverMsg.height - 34
       );
 
       ctx.fillText(
         this.current,
-        gameOverMsg.x + gameOverMsg.width - 47,
-        gameOverMsg.y + 50
+        gameOverMsg.x + gameOverMsg.width - 58,
+        gameOverMsg.y + 54
       );
       ctx.strokeText(
         this.current,
-        gameOverMsg.x + gameOverMsg.width - 47,
-        gameOverMsg.y + 50
+        gameOverMsg.x + gameOverMsg.width - 58,
+        gameOverMsg.y + 54
       );
     }
   },
@@ -688,7 +691,6 @@ function update() {
 function animate() {
   draw();
   update();
-
   requestAnimationFrame(animate);
 }
 
