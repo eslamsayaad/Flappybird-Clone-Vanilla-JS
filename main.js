@@ -2,9 +2,10 @@
 const canvas = document.getElementById("grid");
 const ctx = canvas.getContext("2d");
 
-const btn = document.querySelector(".btn");
-const btnContainer = document.querySelector(".btn_container");
-const circle = document.querySelector(".circle");
+const btn = document.querySelector(".mode_container .btn_container .btn");
+const btnContainer = document.querySelector(".mode_container .btn_container");
+const circle = document.querySelector(".mode_container .btn_container .circle");
+const modeTitle = document.querySelector(".mode_container span ");
 
 const sprite = new Image();
 sprite.src = "src/img/Mobile - Flappy Bird - Version 12 Sprites.png";
@@ -107,13 +108,15 @@ document.addEventListener("keydown", () => {
 
 function darkMode() {
   circle.classList.add("active");
-  btn.style.backgroundColor = "#fb9f49";
+  btn.style.backgroundColor = "#FBDF07";
+  modeTitle.textContent = "Dark";
   localStorage.setItem("dark", "true");
 }
 
 function offDarkMode() {
   circle.classList.remove("active");
-  btn.style.backgroundColor = "#57d857";
+  btn.style.backgroundColor = "#3CCF4E";
+  modeTitle.textContent = "Light";
   localStorage.setItem("dark", "false");
 }
 

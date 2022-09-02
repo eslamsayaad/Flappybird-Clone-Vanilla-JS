@@ -10,7 +10,8 @@
 }
 
 body {
-  background-color: #121212;
+  font-family: "Silkscreen", cursive;
+  background-color: #220136;
 }
 
 .container {
@@ -29,29 +30,45 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.15em;
   width: 100%;
   padding: 0.5em;
 }
 
-footer > p {
-  font-family: "Silkscreen", cursive;
-  font-size: 0.65em;
-  color: #f0f0f0;
-  margin: 0 1.5em;
+.footer_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 360px;
+  color: #f2f2f2;
 }
 
-footer p > a {
-  color: #ffe83e;
+.footer_container p {
+  font-size: 0.65em;
+}
+
+.footer_container p > a {
+  color: #f2f2f2;
   text-decoration: none;
+}
+
+footer .mode_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 72px;
+}
+
+footer .mode_container > span {
+  color: red;
+  font-size: 0.5em;
+  margin-top: 0.7em;
 }
 
 footer .btn_container > button {
   position: relative;
-  width: 35px;
-  height: 14px;
-  border: 3px solid #f0f0f0;
-  /* background-color: #57d857; */
+  width: 30px;
+  height: 11px;
+  border: 2px solid #f2f2f2;
   border-radius: 10px;
   margin: 0.5em 0;
 }
@@ -64,7 +81,7 @@ footer .btn_container > button > .circle {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: #f0f0f0;
+  background-color: #f2f2f2;
   cursor: pointer;
   transition: all 200ms ease-in;
 }
