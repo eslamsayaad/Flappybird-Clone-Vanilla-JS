@@ -10,7 +10,7 @@
 }
 
 body {
-  font-family: "Silkscreen", cursive;
+  font-family: "Silkscreen", sans-serif;
   background-color: #220136;
 }
 
@@ -55,14 +55,14 @@ footer .mode_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 72px;
+  width: 80px;
   margin-right: 0.5em;
 }
 
 footer .mode_container > span {
   color: red;
-  font-size: 0.5em;
-  margin-top: 0.7em;
+  font-size: 0.65em;
+  margin-top: 0.4em;
 }
 
 footer .btn_container > button {
