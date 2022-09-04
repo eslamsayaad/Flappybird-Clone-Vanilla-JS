@@ -100,12 +100,6 @@ canvas.addEventListener("click", (e) => {
   }
 });
 
-document.addEventListener("keydown", () => {
-  if (state.current === state.game) {
-    bird.flap();
-  }
-});
-
 function darkMode() {
   circle.classList.add("active");
   btn.style.backgroundColor = "#FBDF07";
