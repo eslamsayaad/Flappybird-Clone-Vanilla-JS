@@ -201,7 +201,7 @@ const pipes = {
   gap: 95,
 
   frames: 0,
-  period: 170,
+  period: 200,
 
   draw() {
     for (let i = 0; i < this.position.length; i++) {
@@ -365,9 +365,9 @@ const bird = {
   frame: 0,
 
   speed: 0,
-  gravity: 0.23,
+  gravity: 0.3,
 
-  jump: 2.6,
+  jump: 2.65,
 
   draw() {
     ctx.drawImage(
@@ -689,8 +689,8 @@ function update() {
 }
 
 function animate() {
-  draw();
   update();
+  draw();
   requestAnimationFrame(animate);
 }
 

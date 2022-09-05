@@ -31,14 +31,14 @@ footer {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0.5em;
+  padding: 0.4em;
 }
 
 .footer_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 380px;
+  width: 370px;
   color: #f2f2f2;
 }
 
