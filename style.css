@@ -11,7 +11,7 @@
 
 body {
   font-family: "Silkscreen", sans-serif;
-  background-color: #220136;
+  background-color: #202020;
 }
 
 .container {
@@ -20,10 +20,6 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100%;
-}
-
-canvas {
-  border: 1px solid #000;
 }
 
 footer {
@@ -39,7 +35,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   width: 370px;
-  color: #f2f2f2;
+  color: #fff;
 }
 
 .footer_container p {
@@ -47,7 +43,7 @@ footer {
 }
 
 .footer_container p > a {
-  color: #f2f2f2;
+  color: greenyellow;
   text-decoration: none;
 }
 

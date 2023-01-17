@@ -8,7 +8,7 @@ const circle = document.querySelector(".mode_container .btn_container .circle");
 const modeTitle = document.querySelector(".mode_container span ");
 
 canvas.width = 370;
-canvas.height = 670;
+canvas.height = 560;
 
 const sprite = new Image();
 sprite.src = "src/img/Mobile - Flappy Bird - Version 12 Sprites.png";
