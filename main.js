@@ -11,16 +11,16 @@ canvas.width = 370;
 canvas.height = 560;
 
 const sprite = new Image();
-sprite.src = "src/img/Mobile - Flappy Bird - Version 12 Sprites.png";
+sprite.src = "assets/img/flappybird-sprites.png";
 
 const POINT = new Audio();
-POINT.src = "src/audio/sfx_point.wav";
+POINT.src = "assets/audio/sfx_point.wav";
 
 const WING = new Audio();
-WING.src = "src/audio/sfx_wing.wav";
+WING.src = "assets/audio/sfx_wing.wav";
 
 const HIT = new Audio();
-HIT.src = "src/audio/sfx_hit.wav";
+HIT.src = "assets/audio/sfx_hit.wav";
 
 // Functions
 let frames = 0;

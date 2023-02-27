@@ -1,6 +1,6 @@
 @font-face {
-  font-family: Flappy Bird;
-  src: url("src/fonts/Flappy Bird Regular.ttf");
+  font-family: FlappyBird;
+  src: url("assets/fonts/flappy-bird-regular.ttf");
 }
 
 * {
@@ -19,7 +19,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 
 footer {
@@ -27,7 +27,8 @@ footer {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0.4em;
+  padding: 0.5em;
+  margin-top: 0.75rem;
 }
 
 .footer_container {
@@ -39,7 +40,7 @@ footer {
 }
 
 .footer_container p {
-  font-size: 0.75em;
+  font-size: 0.6em;
 }
 
 .footer_container p > a {
